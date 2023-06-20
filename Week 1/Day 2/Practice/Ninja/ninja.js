@@ -22,20 +22,3 @@ ninja1.sayName();
 ninja1.showStats();
 ninja1.drinkSake();
 
-class Sensei extends Ninja{
-    constructor(name, wisdom=10){
-        super(name, 200, 10, 10)
-        this.wisdom = wisdom
-    }
-    speakWisdom(){
-        super.drinkSake()
-        this.health += 10;
-        console.log('What one programmer can do in one month, two programmers can do in two months.')
-}
-    showStats(){
-            console.log(`Name:${this.name}, Health: ${this.health}, Speed: ${this.speed}, Strenth: ${this.strenght}`);
-    }
-}
-const superSensei = new Sensei("Master Splinter");
-superSensei.speakWisdom();
-superSensei.showStats();
