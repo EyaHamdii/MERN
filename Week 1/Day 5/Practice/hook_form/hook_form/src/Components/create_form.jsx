@@ -1,7 +1,7 @@
 import React, { useState } from  'react';
     
     
-const UserForm = (props) => {
+function UserForm () {
     const [Firstname, setFirstname] = useState("");
     const [Lastname, setLastname] = useState("");
     const [email, setEmail] = useState("");
@@ -14,7 +14,7 @@ const UserForm = (props) => {
         console.log("Welcome", newUser);
     };
     
-    return(
+    return(<div>
         <form onSubmit={ createUser }>
             <div>
                 <label>First Name: </label> 
@@ -37,8 +37,15 @@ const UserForm = (props) => {
             </div>
             <input type="submit" value="Create User" />
         </form>
+        <h1>Your form data</h1>,
+        <p>First Name: {Firstname}</p>,
+        <p>Last Name: {Lastname}</p>,
+        <p>Email Address: {email},</p>
+        <p>Password: {password}</p>,
+        <p>Confirm Password: {Confirm}</p></div>
 
     );
+
 };
     
 export default UserForm;
