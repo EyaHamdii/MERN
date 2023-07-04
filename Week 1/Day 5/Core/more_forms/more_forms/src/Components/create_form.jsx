@@ -103,7 +103,7 @@ const handleTitle3 = (e) => {
             <div><label>Confirm Password: </label>
                 <input type="password"  onChange={ (e) => setConfirm(e.target.value) } />
             </div>
-            <input type="submit" value="Create User" onChange={UserForm} />
+            <input type="submit" value="Create User" onClick={UserForm} />
         </form>
         <h1>Your form data</h1>,
         <p>First Name: {Firstname}</p>,

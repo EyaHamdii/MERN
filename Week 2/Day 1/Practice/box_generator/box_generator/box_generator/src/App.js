@@ -1,11 +1,10 @@
-
+import PeopleForm from './Components/color';
 import './App.css';
-import validation from './Components/validation';
 
 function App() {
   return (
     <div className="App">
-
+<PeopleForm/>
     </div>
   );
 }
