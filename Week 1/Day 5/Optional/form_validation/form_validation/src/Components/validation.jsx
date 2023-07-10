@@ -1,135 +1,93 @@
-// import React, { useReducer } from 'react';
-//  
-// const initialtState = {
-//         firstName: {
-//             value: '',
-//             error: null
-//         },
-//         lastName: {
-//             value: '',
-//             error: null
-//         },
-//         email: {
-//             value: '',
-//             error: null
-//         }
-//     };
+import React, { useState } from  'react';
+    
+    
+const UserForm =(props)=> {
+    const [Firstname, setFirstname] = useState("");
+    const [Lastname, setLastname] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");  
+    const [Confirm, setConfirm] = useState("");
+    const [titleError, setTitleError] = useState("");
+    const [titleError1, setTitleError1] = useState("");
+    const [titleError2, setTitleError2] = useState("");
 
-// function reducer(state, action) {
-//     return {
-//         ...state,
-//         [action.type]: action.payload
-//     };
-// }
-//  
-// export default () => {
-//     const [state, dispatch] = useReducer(reducer, initialtState);
-//  
-//     function handleChange(e) {
-//         const { name, value } = e.target;
-//         dispatch({
-//             type: name,
-//             payload: value
-//         });
-//     }
-//  
-//     return (
-//         <div>
-//             {JSON.stringify(state)}
-// ...
 
-//             <div>
-//                 <label>
-//                     <span>First Name:</span>{' '}
-//                     <input
-//                         name="firstName"
-//                         value={state.firstName}
-//                         onChange={handleChange}
-//                     />
-//                 </label>
-// {state.firstName.error !== null && (
-//         <p className="error">{state.firstName.error}</p>
-//       )}
-//             </div>
-// <div>
-//                 <label>
-//                     <span>Last Name:</span>{' '}
-//                     <input
-//                         name="lastName"
-//                         value={state.lastName}
-//                         onChange={handleChange}
-//                     />
-//                 </label>
-// {state.lastName.error !== null && (
-//         <p className="error">{state.lastName.error}</p>
-//       )}
-//             </div>
-//             <div>
-//                 <label>
-//                     <span>Email:</span>{' '}
-//                     <input
-//                         name="email"
-//                         value={state.email}
-//                         onChange={handleChange}
-//                     />
-//                 </label>
-//                 {state.email.error !== null && (
-//         <p className="error">{state.email.error}</p>
-//       )}
-//             </div>
-//         </div>
-//     );
-// }
-import React, { useState } from 'react';
+    const createUser = (e) => {
+        e.preventDefault();
+        const newUser = { Firstname,Lastname, email, password, Confirm };
+        console.log("Welcome", newUser);
+    };
+const handleTitle = (e) => {
+    setFirstname(e.target.value);
+    if(e.target.value.length < 1) {
+        setTitleError("Name is required!");
+    } else if(e.target.value.length < 3) {
+        setTitleError("Name must be 3 characters or longer!");
+    } else {
+        setTitleError("");
+    }
+}
+const handleTitle1 = (e) => {
+    setLastname(e.target.value);
+    if(e.target.value.length < 1) {
+        setTitleError1("Last Name is required!");
+    } else if(e.target.value.length < 3) {
+        setTitleError1("Last Name must be 3 characters or longer!");
+    } else {
+        setTitleError1("");
+    }
+}
+const handleTitle2 = (e) => {
+    setEmail(e.target.value);
+    if(e.target.value.length < 1) {
+        setTitleError2("Email is required!");
+    } else if(e.target.value.length < 2) {
+        setTitleError2("Email must be 2 characters or longer!");
+    } else {
+        setTitleError2("");
+    }
+}
+  
+    return(<div>
+        <form onSubmit={ createUser }>
 
-const MyForm = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: ''
-  });
+                <label>First Name: </label>
+                <input type="text"  onChange={handleTitle} />
+    {
+                    titleError ?
+                    <p style={{color:'red'}}>{ titleError }</p> :
+                    ''
+                }
+            <div>
+            </div>
+            <div>
+                <label>Last Name: </label> 
+                <input type="text"  onChange={ handleTitle1 } />
+{
+                    titleError1 ?
+                    <p style={{color:'red'}}>{ titleError1 }</p> :
+                    ''
+                }
+            </div>
+            <div>
+                <label>Email Address: </label> 
+                <input type="email"  onChange={ handleTitle2 } />
+                {
+                    titleError2 ?
+                    <p style={{color:'red'}}>{ titleError2 }</p> :
+                    ''
+                }
+            </div>
+      
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
+           
+     
+<button type="submit" onSubmit={createUser}>Create USER</button>
+        </form>
+</div>
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Perform form submission logic
-    console.log('Form submitted:', formData);
-    // Reset form data
-    setFormData({
-      name: '',
-      email: ''
-    });
-  };
+    );
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Name:
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Email:
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-      </label>
-      <button type="submit">Submit</button>
-    </form>
-  );
 };
-
-export default MyForm;
+    
+export default UserForm;

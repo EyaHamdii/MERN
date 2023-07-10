@@ -1,11 +1,10 @@
-
+import Tabs from "./Components/tabs"
 import './App.css';
-import MyForm from './Components/validation';
 
 function App() {
   return (
     <div className="App">
-<MyForm/>
+<Tabs/>
     </div>
   );
 }

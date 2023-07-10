@@ -9,7 +9,6 @@ export default function App() {
 
     return JSON.parse(localValue)
   })
-
   useEffect(() => {
     localStorage.setItem("ITEMS", JSON.stringify(todos))
   }, [todos])
@@ -29,7 +28,6 @@ export default function App() {
         if (todo.id === id) {
           return { ...todo, completed }
         }
-
         return todo
       })
     })
