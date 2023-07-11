@@ -1,34 +1,34 @@
 import React, { useState } from 'react';
 
-const Tabs = (props) => {
+const Tabs = ({ items }) => {
+  const [activeTab, setActiveTab] = useState(0);
 
-
-  const handleForm = (e) => {
-    e.preventDefault();
-     ("Tab 1 content is showing here")
+  const handleTabClick = (index) => {
+    setActiveTab(index);
   };
-  const handleForm1 = (e) => {
-    e.preventDefault();
-     ("Tab 1 content is showing here")
-  };
-  const handleForm2 = (e) => {
-    e.preventDefault();
-     ("Tab 1 content is showing here")
-  };
-
-
 
   return (
-    <>
-      <form onSubmit={handleForm}>
-        <input type="submit" value="Tab 1" />
-
-      </form>
-      <form onSubmit={handleForm1}><input type="submit" value="Tab 2" /></form>
-      <form onSubmit={handleForm2}><input type="submit" value="Tab 3" /></form>
-
-    </>
+    <div className="tabs">
+      <div className="tab-headers">
+        {items.map((item, index) => (
+          <div
+            key={index}
+            className={`tab-header ${activeTab === index ? 'active' : ''}`}
+            onClick={() => handleTabClick(index)}
+          >
+            {item.label}
+          </div>
+        ))}
+      </div>
+      <div className="tab-content">
+        {items[activeTab].content}
+      </div>
+    </div>
   );
 };
 
 export default Tabs;
+
+
+
+
